@@ -82,9 +82,9 @@ with col3:
     shap.plots.waterfall(shap_expl, show=False)
     st.pyplot(fig)
 
-    # 力图
-    st.markdown("<h3 style='color:purple;'>Force Plot</h3>", unsafe_allow_html=True)
-    shap.initjs()
-    force_plot = shap.force_plot(explainer.expected_value, shap_values.values[0], 
-                                 X_input[0], feature_names=feature_names)
-    st.components.v1.html(f"<head>{shap.getjs()}</head>{force_plot.html()}", height=300)
+   # 力图
+    force_plot = shap.force_plot(
+    explainer.expected_value, shap_values.values[0], X_input[0], feature_names=feature_names
+    )
+    import streamlit.components.v1 as components
+    components.html(force_plot.html(), height=300)
