@@ -1,0 +1,5 @@
+streamlit==1.30.0
+xgboost==1.7.6
+numpy==1.25.2
+matplotlib==3.8.0
+shap==0.42.1
