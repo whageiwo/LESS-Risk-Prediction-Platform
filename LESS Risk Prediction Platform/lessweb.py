@@ -3,6 +3,7 @@ import xgboost as xgb
 import numpy as np
 import shap
 import matplotlib.pyplot as plt
+import streamlit.components.v1 as components
 
 # ------------------ 页面配置 ------------------
 st.set_page_config(page_title="LESS Risk Prediction Platform", layout="wide")
@@ -82,9 +83,9 @@ with col3:
     shap.plots.waterfall(shap_expl, show=False)
     st.pyplot(fig)
 
-   # 力图
+    # 力图 (Streamlit 显示)
+    st.markdown("<h3 style='color:purple;'>Force Plot</h3>", unsafe_allow_html=True)
     force_plot = shap.force_plot(
-    explainer.expected_value, shap_values.values[0], X_input[0], feature_names=feature_names
+        explainer.expected_value, shap_values.values[0], X_input[0], feature_names=feature_names
     )
-    import streamlit.components.v1 as components
-    components.html(force_plot.html(), height=300)
+    components.html(f"<head>{shap.getjs()}</head>{force_plot.html()}", height=300)
