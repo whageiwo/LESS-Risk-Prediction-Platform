@@ -1,0 +1,26 @@
+name: Keep Streamlit Awake
+
+on:
+  schedule:
+    # cron 表达式（一种定时语法），表示每隔 10 小时自动运行一次
+    - cron: '0 */10 * * *' 
+  workflow_dispatch: # 允许你在网页上点击按钮手动触发
+
+# 显式声明赋予此脚本向你的仓库写入代码的权限
+permissions:
+  contents: write
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      
+      - name: Make Empty Commit
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          # 允许提交不包含任何代码改动的“空历史记录”
+          git commit --allow-empty -m "Keep-alive ping from GitHub Actions"
+          git push
