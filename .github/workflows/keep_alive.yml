@@ -2,8 +2,8 @@ name: Keep Streamlit Awake
 
 on:
   schedule:
-    # cron 表达式（一种定时语法），表示每隔 10 小时自动运行一次
-    - cron: '0 */10 * * *' 
+    # cron 表达式（一种定时语法），表示每隔 5 小时自动运行一次
+    - cron: '0 */5 * * *' 
   workflow_dispatch: # 允许你在网页上点击按钮手动触发
 
 # 显式声明赋予此脚本向你的仓库写入代码的权限
