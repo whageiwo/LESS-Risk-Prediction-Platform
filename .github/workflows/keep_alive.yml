@@ -21,6 +21,6 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          # 允许提交不包含任何代码改动的“空历史记录”
           git commit --allow-empty -m "Keep-alive ping from GitHub Actions"
-          git push
+          git pull --rebase origin main  # 👈 加上这行：推之前先拉取最新代码，彻底消灭冲突
+          git push origin main           # 👈 明确指定推送到 main 分支
